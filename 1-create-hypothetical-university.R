@@ -1,20 +1,20 @@
-
-
 ## Simulate democratic thermometer ratings at a hypothetical 20,000-student university.
 ## Pollock III (2012, Chp. 6) conjectured about a 20,000-student university whose known population thermometer rating toward Democrats was 58. 
 ## Population standard deviation is assumed to be 24.8
 ## We will simulate that here with this code. However, we have to bound the ratings between 0 and 100.
 ## Let's write a bootstrap function toward that end.
 ###############################################################################################################################################
-
-
-set.seed(8675309) # for reproducibility
-getwd() # get workign directory
-setwd("~/Dropbox/teaching/posc3410/hypothetical-university") # set working directory
-
 ## After some consideration, a beta distribution does the job best.
 ## http://en.wikipedia.org/wiki/Beta_distribution
 
+
+
+getwd() # get working directory
+setwd("~/Dropbox/teaching/posc3410/hypothetical-university") # set working directory
+library(lattice)
+
+
+set.seed(8675309) # for reproducibility
 GoGoGadgetBootstrap <- function(n,mean,sd,lowerbound,upperbound){
 range <- upperbound - lowerbound
 m <- (mean - lowerbound)/range
@@ -28,4 +28,25 @@ return(data)
 
 DTR <- GoGoGadgetBootstrap(20000,58,24.8,0,100) # Create the university, assign it to DTR
 DTR <- round(DTR) # Round thermometer ratings to integers, since students probably don't think in decimals toward the Dems.
+histogram(DTR)
+
+meanDTR <- mean(DTR)
+meanDTR
+
+
+# Get five samples of 10 respondents
+fiveoften <- sapply(1:5, function(i){ x <-sample(DTR, 10, replace = TRUE) })
+mean(fiveoften)
+
+# Get a million samples of ten. This may take a few seconds.
+millionoften <- sapply(1:1000000, function(i){ x <-sample(DTR, 10, replace = TRUE) })
+mean(millionoften)
+
+# Get 100 samples of a thousand. 
+hundredofthousand <- sapply(1:100, function(i){ x <-sample(DTR, 1000, replace = TRUE) })
+mean(hundredofthousand)
+
+# Get a thousand samples of thousand. This may take a few seconds.
+thousandofthousand <- sapply(1:1000, function(i){ x <-sample(DTR, 1000, replace = TRUE) })
+mean(thousandofthousand)
 
