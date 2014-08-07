@@ -10,7 +10,7 @@
 
 
 getwd() # get working directory
-setwd("~/Dropbox/teaching/posc3410/hypothetical-university") # set working directory
+setwd("~/Dropbox/teaching/posc3410/hypothetical-university") # set working directory. Note, this is for me.
 library(lattice)
 
 
