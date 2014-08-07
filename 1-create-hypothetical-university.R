@@ -19,13 +19,13 @@ GoGoGadgetBootstrap <- function(n,mean,sd,lowerbound,upperbound){
 range <- upperbound - lowerbound
 m <- (mean - lowerbound)/range
 s <- sd/range
-a <- (m^2 - m^3 - m*s^2)/s^2 # calculating alpha for rbeta
-b <- (m-2*m^2+m^3-s^2+m*s^2)/s^2 # calculating beta for rbeta
+a <- (m^2 - m^3 - m*s^2)/s^2 # calculate alpha for rbeta
+b <- (m-2*m^2+m^3-s^2+m*s^2)/s^2 # calculate beta for rbeta
 data <- rbeta(n,a,b) # generate the data
 data <- lowerbound + data * range # squeeze it within the bounds.
 return(data)
 }
 
-DTR <- GoGoGadgetBootstrap(20000,58,24.8,0,100) # Create the university, assign it output
+DTR <- GoGoGadgetBootstrap(20000,58,24.8,0,100) # Create the university, assign it to DTR
 DTR <- round(DTR) # Round thermometer ratings to integers, since students probably don't think in decimals toward the Dems.
 
