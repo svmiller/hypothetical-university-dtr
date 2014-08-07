@@ -42,9 +42,9 @@ mean(fiveoften)
 millionoften <- sapply(1:1000000, function(i){ x <-sample(DTR, 10, replace = TRUE) })
 mean(millionoften)
 
-# Get 100 samples of a thousand. 
-hundredofthousand <- sapply(1:100, function(i){ x <-sample(DTR, 1000, replace = TRUE) })
-mean(hundredofthousand)
+# Get one sample of a thousand. 
+oneofthousand <- sapply(1:1, function(i){ x <-sample(DTR, 1000, replace = TRUE) })
+mean(oneofthousand)
 
 # Get a thousand samples of thousand. This may take a few seconds.
 thousandofthousand <- sapply(1:1000, function(i){ x <-sample(DTR, 1000, replace = TRUE) })
