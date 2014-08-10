@@ -14,7 +14,6 @@ setwd("~/Dropbox/teaching/posc3410/hypothetical-university") # set working direc
 library(lattice)
 
 
-set.seed(8675309) # for reproducibility
 GoGoGadgetBootstrap <- function(n,mean,sd,lowerbound,upperbound){
 range <- upperbound - lowerbound
 m <- (mean - lowerbound)/range
@@ -26,6 +25,7 @@ data <- lowerbound + data * range # squeeze it within the bounds.
 return(data)
 }
 
+set.seed(8675309) # for reproducibility
 DTR <- GoGoGadgetBootstrap(20000,58,24.8,0,100) # Create the university, assign it to DTR
 DTR <- round(DTR) # Round thermometer ratings to integers, since students probably don't think in decimals toward the Dems.
 histogram(DTR)
